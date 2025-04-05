@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: TestRunner.TestRunner
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 3.960 s <<< FAILURE! -- in TestRunner.TestRunner
+TestRunner.TestRunner.runScenario["Explore Link", "Ebay explore page"](1) -- Time elapsed: 2.035 s <<< FAILURE!
+java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.get(String)" because "this.driver" is null
+	at StepDefinition.LoginStepDefinition.i_am_on_the_ebay_login_page(LoginStepDefinition.java:36)
+	at ✽.I am on the ebay login page(file:///C:/Users/prade/Cucumber/src/test/resources/Features/Explore.feature:6)
+

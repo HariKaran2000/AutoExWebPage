@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-01-21T23:36:01 IST" name="Default suite" finished-at="2025-01-21T23:36:07 IST" duration-ms="5840">
+    <groups>
+      <group name="cucumber">
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:TestRunner.TestRunner@6cb107fd]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+      </group> <!-- cucumber -->
+    </groups>
+    <test started-at="2025-01-21T23:36:01 IST" name="Default test" finished-at="2025-01-21T23:36:07 IST" duration-ms="5840">
+      <class name="TestRunner.TestRunner">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:TestRunner.TestRunner@6cb107fd]" started-at="2025-01-21T23:36:01 IST" name="setUpClass" finished-at="2025-01-21T23:36:01 IST" duration-ms="614" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@b16e202]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpClass -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:TestRunner.TestRunner@6cb107fd]" started-at="2025-01-21T23:36:01 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-01-21T23:36:06 IST" duration-ms="5115" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Login to Ebay"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Ebay Login"]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.NullPointerException">
+            <message>
+              <![CDATA[Cannot invoke "org.openqa.selenium.WebElement.click()" because "ele" is null]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebElement.click()" because "ele" is null
+at basePageObject.BasePage.clickElment(BasePage.java:18)
+at StepDefinition.LoginStepDefinition.i_enter_username_and_password(LoginStepDefinition.java:45)
+at ✽.I enter username and password(file:///C:/Users/prade/Cucumber/src/test/resources/Features/Login.feature:7)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.TestRunner@6cb107fd]" started-at="2025-01-21T23:36:06 IST" name="tearDownClass" finished-at="2025-01-21T23:36:07 IST" duration-ms="65" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownClass -->
+      </class> <!-- TestRunner.TestRunner -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
