@@ -7,8 +7,8 @@ import org.openqa.selenium.edge.EdgeDriver;
 import pageObjectManager.PageObjectManager;
 
 public class AbstractSteps {
-    private WebDriver driver;
-    private PageObjectManager pageObjectManager;
+    protected static WebDriver driver;
+    protected PageObjectManager pageObjectManager;
 
     public void startDriver() {
         try {

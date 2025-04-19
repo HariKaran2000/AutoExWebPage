@@ -11,6 +11,7 @@ Feature: Automation Exercise Page
     And Verify 'New User Signup!' is visible
     And Enter name and email address
     When Click 'Signup' button
+
 #    And Verify that 'ENTER ACCOUNT INFORMATION' is visible
 #    And Fill details: Title, Name, Email, Password, Date of birth
 #    And Click Create Account button
