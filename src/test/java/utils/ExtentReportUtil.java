@@ -27,7 +27,7 @@ public class ExtentReportUtil {
         if (extent == null) {
             ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(LocalDir + "\\AutomationReport\\" + FileName);
             System.out.println(LocalDir +"\\AutomationReport\\"+ FileName);
-            htmlReporter.config().setTheme(Theme.DARK);
+            htmlReporter.config().setTheme(Theme.STANDARD);
             htmlReporter.config().setDocumentTitle("ExtentReport");
             htmlReporter.config().setEncoding("utf-8");
             htmlReporter.config().setReportName("Execution-Status");
