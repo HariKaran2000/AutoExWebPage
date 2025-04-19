@@ -2,6 +2,7 @@ package utils;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.Status;
 import io.cucumber.java.Scenario;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -17,48 +18,40 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 
 
-public class ScreenshotUtils {
+public class ScreenshotUtils extends ExtentReportUtil {
 
     public static String screenshotFolder = "AutomationReport\\screenshots\\";
     public static final Logger logger = Logger.getLogger(String.valueOf(ScreenshotUtils.class));
     private static ExtentTest extentTest;
 
 
-    public static String takeScreenshot(WebDriver driver, String description) throws IOException {
-        String random = RandomStringUtils.randomNumeric(3);
+    public static void attachScreenshot(WebDriver driver, String stepName) {
 
-        TakesScreenshot ts = (TakesScreenshot) driver;
-        File src = ts.getScreenshotAs(OutputType.FILE);
-        String des = screenshotFolder + description + random + ".png";
-
-        try{
-            FileUtils.copyFile(src, new File(des));
-        }catch (IOException e){
-           logger.warning("cannot take screenshot");
-        }
-
-        return des.substring(des.indexOf("/")+1);
-    }
-
-    public static void addScreenshot(WebDriver driver, String message) throws IOException {
-//        extentTest = ExtentReportUtil.startTest();
-        if(extentTest!=null){
-            if(driver!=null){
-
-                String path = ScreenshotUtils.takeScreenshot(driver,message);
-                extentTest.pass(message, MediaEntityBuilder.createScreenCaptureFromPath(path).build());
-                System.out.println("Screenshot taken");
-            }else{
-                Assert.assertTrue(false,"Screenshot failed");
+        if (stepName!=null) {
+            String random = RandomStringUtils.randomNumeric(3);
+            TakesScreenshot ts = (TakesScreenshot) driver;
+            File src = ts.getScreenshotAs(OutputType.FILE);
+            String screenshotPath = LocalDir + "\\AutomationReport\\screenshots\\" + "Screenshot-" +random + ".png";
+            File dest = new File(screenshotPath);
+            try {
+                FileUtils.copyFile(src, dest);
+                scenarioTest.pass(stepName, MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
-
-
     }
 
-    public static void addStepInReport(String message){
-        if(extentTest!=null){
-            extentTest.pass(message);
+    public static void addStepInReport(String stepName) {
+
+        if (stepName!=null) {
+            scenarioTest.log(Status.PASS, stepName);
+        }
+    }
+    public static void addStepInReportFail(String stepName) {
+
+        if (stepName!=null) {
+            scenarioTest.log(Status.FAIL, stepName);
         }
     }
 }

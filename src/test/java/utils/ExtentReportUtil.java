@@ -17,7 +17,7 @@ public class ExtentReportUtil {
     public static ExtentReports extent;
     public static ExtentTest scenarioTest;
     public static WebDriver driver;
-    private static String LocalDir = System.getProperty("user.dir");
+    static String LocalDir = System.getProperty("user.dir");
     private static String Timestamp = new SimpleDateFormat("dd.MM.yyyy.HH.mm").format(new Date());
     private static String FileName = "ExtentReport_" + Timestamp + ".html";
     private static String Folder = LocalDir +"\\AutomationReport\\";
@@ -55,51 +55,6 @@ public class ExtentReportUtil {
             scenarioTest.log(Status.FAIL, stepDetails);
         }
         extent.flush();
-    }
-
-    public static void attachScreenshot(WebDriver driver, String stepName) {
-
-        if (stepName!=null) {
-            String random = RandomStringUtils.randomNumeric(3);
-            TakesScreenshot ts = (TakesScreenshot) driver;
-            File src = ts.getScreenshotAs(OutputType.FILE);
-            String screenshotPath = LocalDir + "\\AutomationReport\\screenshots\\" + "Screenshot-" +random + ".png";
-            File dest = new File(screenshotPath);
-            try {
-                FileUtils.copyFile(src, dest);
-                scenarioTest.pass(stepName, MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-    public static void addStepInReport(String stepName) {
-
-        if (stepName!=null) {
-            scenarioTest.log(Status.PASS, stepName);
-        }
-    }
-    public static void addStepInReportFail(String stepName) {
-
-        if (stepName!=null) {
-            scenarioTest.log(Status.FAIL, stepName);
-        }
-    }
-
-
-
-    public static void takeScreenshot(WebDriver driver, String stepName){
-        String random = RandomStringUtils.randomNumeric(3);
-        TakesScreenshot ts = (TakesScreenshot) driver;
-        File src = ts.getScreenshotAs(OutputType.FILE);
-        String screenshotPath = LocalDir + "\\AutomationReport\\screenshots\\" + "Screenshot-" +random + ".png";
-        File dest = new File(screenshotPath);
-        try {
-            FileUtils.copyFile(src, dest);
-            scenarioTest.pass(stepName, MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public static void tearDownReport() {
