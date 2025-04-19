@@ -1,11 +1,11 @@
-package TestRunner;
+package testRunner;
 
 import io.cucumber.testng.CucumberOptions;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 
 @CucumberOptions(
         features = "src/test/resources/Features/",
-        glue = "StepDefinition",
+        glue = "stepDefinition",
         monochrome = false,
         dryRun = false,
         plugin = {
@@ -14,7 +14,7 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
                 "html:AutomationReport/cucumberHTML.html"
         },
-        tags = "@explore"
+        tags = "@TC01_AE"
 )
 
 public class TestRunner extends AbstractTestNGCucumberTests {
