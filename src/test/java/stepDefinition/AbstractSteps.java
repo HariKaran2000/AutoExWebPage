@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import pageObjectManager.PageObjectManager;
 
+import java.nio.file.Files;
+
 public class AbstractSteps {
     protected static WebDriver driver;
     protected PageObjectManager pageObjectManager;
@@ -15,14 +17,14 @@ public class AbstractSteps {
         try {
             if (driver == null) {
                 if (ConfigProvider.getProperty("browser").equals("chrome")) {
-                  ChromeOptions options = new ChromeOptions();
+                    ChromeOptions options = new ChromeOptions();
+                    String tempProfileDir = Files.createTempDirectory("chrome-profile").toString();
+                    options.addArguments("--user-data-dir=" + tempProfileDir);
+                    options.addArguments("--no-sandbox");
+                    options.addArguments("--disable-dev-shm-usage");
+                    options.addArguments("--headless=new");
+                    driver = new ChromeDriver(options);
 
-String tempProfileDir = Files.createTempDirectory("chrome-profile").toString();
-options.addArguments("--user-data-dir=" + tempProfileDir);
-options.addArguments("--no-sandbox");
-options.addArguments("--disable-dev-shm-usage");
-options.addArguments("--headless=new");
- driver = new ChromeDriver(options);
                 }
                 if (ConfigProvider.getProperty("browser").equals("edge")) {
                     driver = new EdgeDriver();

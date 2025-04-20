@@ -160,12 +160,12 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>3.0.0</version>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.11.0</version>
 				<configuration>
-					<execution>
-					</execution>
+					<release>14</release>
 				</configuration>
+
 			</plugin>
 		</plugins>
 	</reporting>
