@@ -24,17 +24,17 @@ public class Hooks extends AbstractSteps{
             ScreenshotUtils.attachScreenshot(getDriver(), "Failure Screenshot");
             ScreenshotUtils.addStepInReportFail("Scenario Failed: " + scenario.getName());
         }
-//        if (driver != null) {
-//            driver.quit();
-//            File userDataDir = new File(System.getProperty("user.dir") + "/temp");
-//            if (userDataDir.exists()) {
-//                try {
-//                    FileUtils.deleteDirectory(userDataDir);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
+        if (driver != null) {
+            driver.quit();
+            File userDataDir = new File(System.getProperty("user.dir") + "/temp");
+            if (userDataDir.exists()) {
+                try {
+                    FileUtils.deleteDirectory(userDataDir);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         ExtentReportUtil.tearDownReport();
     }
 }
