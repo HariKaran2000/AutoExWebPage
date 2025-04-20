@@ -15,7 +15,7 @@ public class AbstractSteps {
         try {
             if (driver == null) {
                 ChromeOptions options = new ChromeOptions();
-                String userDataDir = System.getProperty("user.dir") + "/temp/userDataDir_" + System.currentTimeMillis();
+                String userDataDir = System.getProperty("user.dir") + "\\temp\\userDataDir_" + System.currentTimeMillis();
                 options.addArguments("user-data-dir=" + userDataDir);
 
                 if (ConfigProvider.getProperty("browser").equals("chrome")) {
