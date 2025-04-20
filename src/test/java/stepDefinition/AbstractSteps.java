@@ -15,12 +15,12 @@ public class AbstractSteps {
         try {
             if (driver == null) {
                 ChromeOptions options = new ChromeOptions();
-                String userDataDir = System.getProperty("user.dir") + "/temp/userDataDir_" + System.currentTimeMillis();  // Unique directory for each run
-                options.addArguments("user-data-dir=" + userDataDir);  // Set user data dir
+                String userDataDir = System.getProperty("user.dir") + "/temp/userDataDir_" + System.currentTimeMillis();
+                options.addArguments("user-data-dir=" + userDataDir);
 
                 if (ConfigProvider.getProperty("browser").equals("chrome")) {
-                    System.setProperty("webdriver.chrome.driver", "C:\\Users\\Hari S\\chromedriver-win64\\chromedriver.exe");
-                    driver = new ChromeDriver(options);  // Pass ChromeOptions
+                    System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"\\chromedriver.exe");
+                    driver = new ChromeDriver(options);
                     driver.manage().window().maximize();
                 }
                 if (ConfigProvider.getProperty("browser").equals("edge")) {
