@@ -37,7 +37,7 @@ public class AutomationExerciseStepDefinition extends AbstractSteps {
     }
     @Then("Verify {string} is visible")
     public void verify_is_visible(String string) {
-       getPageObjectManager().getAutomationExercisePage().verifyNewUserSignUpPage(string);
+       getPageObjectManager().getAutomationExercisePage().verifyHeader(string);
     }
     @Then("Enter name and email address")
     public void enter_name_and_email_address() {
@@ -48,17 +48,15 @@ public class AutomationExerciseStepDefinition extends AbstractSteps {
         getPageObjectManager().getAutomationExercisePage().buttonClick(string);
 
     }
-    @Then("Verify that {string} is visible")
-    public void verify_that_is_visible(String string) {
 
-    }
-    @Then("Fill details: Title, Name, Email, Password, Date of birth")
+    @Then("Fill details: for account registration with valid information")
     public void fill_details_title_name_email_password_date_of_birth() {
-
+        getPageObjectManager().getAutomationExercisePage().enterAccountInfo();
     }
 
     @And("Click Create Account button")
     public void clickCreateAccountButton() {
+        getPageObjectManager().getAutomationExercisePage().createAccount();
         
     }
 
