@@ -14,14 +14,11 @@ public class AbstractSteps {
     public void startDriver() {
         try {
             if (driver == null) {
-                ChromeOptions options = new ChromeOptions();
-                String userDataDir = System.getProperty("user.dir") + "\\temp\\userDataDir_" + System.currentTimeMillis();
-                options.addArguments("user-data-dir=" + userDataDir);
-
                 if (ConfigProvider.getProperty("browser").equals("chrome")) {
                     System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"\\chromedriver.exe");
-                    driver = new ChromeDriver(options);
+                    driver = new ChromeDriver();
                     driver.manage().window().maximize();
+                    System.out.println("Chrome browser launched");
                 }
                 if (ConfigProvider.getProperty("browser").equals("edge")) {
                     driver = new EdgeDriver();
