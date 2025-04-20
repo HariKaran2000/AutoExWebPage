@@ -26,7 +26,7 @@ public class Hooks extends AbstractSteps{
         }
         if (driver != null) {
             driver.quit();
-            File userDataDir = new File(System.getProperty("user.dir") + "/temp");
+            File userDataDir = new File(System.getProperty("user.dir") + "\\temp");
             if (userDataDir.exists()) {
                 try {
                     FileUtils.deleteDirectory(userDataDir);
