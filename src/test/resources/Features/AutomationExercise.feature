@@ -11,12 +11,12 @@ Feature: Automation Exercise Page
     And Verify 'New User Signup!' is visible
     And Enter name and email address
     When Click 'Signup' button
-
-#    And Verify that 'ENTER ACCOUNT INFORMATION' is visible
-#    And Fill details: Title, Name, Email, Password, Date of birth
-#    And Click Create Account button
-#    And Verify that 'ACCOUNT CREATED!' is visible
-#    And Click 'Continue' button
-#    And Verify that 'Logged in as username' is visible
-#    When Click 'Delete Account' button
-#    Then Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button
+    And Verify 'ENTER ACCOUNT INFORMATION' is visible
+    And Fill details: for account registration with valid information
+    And Click Create Account button
+    And Verify 'ACCOUNT CREATED!' is visible
+    And Click 'Continue' button
+    And Verify 'Logged in as username' is visible
+    When Click 'Delete Account' button
+    Then Verify 'ACCOUNT DELETED!' is visible
+    And Click 'Continue' button

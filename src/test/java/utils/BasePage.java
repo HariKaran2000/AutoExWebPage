@@ -1,9 +1,12 @@
 package utils;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -43,5 +46,22 @@ public class BasePage {
         implictWait(3);
         ScreenshotUtils.attachScreenshot(driver,"Entered value : " + value);
     }
+    public void moveToElement(WebElement ele){
+        Actions actions = new Actions(driver);
+        actions.moveToElement(ele).perform();
+        implictWait(5);
+    }
+
+    public void selectElementByValue(WebElement ele, String value){
+        Select select = new Select(ele);
+        select.selectByValue(value);
+        implictWait(5);
+        ScreenshotUtils.attachScreenshot(driver,"Selected " + value);
+    }
+    public void scrollDown(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,500)");
+    }
+
 
 }
