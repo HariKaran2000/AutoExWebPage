@@ -15,6 +15,7 @@ public class AbstractSteps {
         try {
             if (driver == null) {
                 if (ConfigProvider.getProperty("browser").equals("chrome")) {
+                    System.out.println(System.getProperty("user.dir"));
                     System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/chromedriver.exe");
                     driver = new ChromeDriver();
                     driver.manage().window().maximize();
