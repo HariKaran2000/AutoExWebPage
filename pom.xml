@@ -165,6 +165,7 @@
 				<configuration>
 					<release>14</release>
 				</configuration>
+
 			</plugin>
 		</plugins>
 	</reporting>
