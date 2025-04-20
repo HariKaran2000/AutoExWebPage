@@ -1,13 +1,9 @@
 package stepDefinition;
 
 import io.cucumber.java.*;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.WebDriver;
 import utils.ExtentReportUtil;
 import utils.ScreenshotUtils;
 
-import java.io.File;
-import java.io.IOException;
 
 public class Hooks extends AbstractSteps{
 
@@ -26,14 +22,6 @@ public class Hooks extends AbstractSteps{
         }
         if (driver != null) {
             driver.quit();
-            File userDataDir = new File(System.getProperty("user.dir") + "\\temp");
-            if (userDataDir.exists()) {
-                try {
-                    FileUtils.deleteDirectory(userDataDir);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
         ExtentReportUtil.tearDownReport();
     }
