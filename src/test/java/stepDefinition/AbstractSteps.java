@@ -15,9 +15,14 @@ public class AbstractSteps {
         try {
             if (driver == null) {
                 if (ConfigProvider.getProperty("browser").equals("chrome")) {
-                    driver = new ChromeDriver();
-                    driver.manage().window().maximize();
-                    System.out.println("Chrome browser launched");
+                  ChromeOptions options = new ChromeOptions();
+
+String tempProfileDir = Files.createTempDirectory("chrome-profile").toString();
+options.addArguments("--user-data-dir=" + tempProfileDir);
+options.addArguments("--no-sandbox");
+options.addArguments("--disable-dev-shm-usage");
+options.addArguments("--headless=new");
+ driver = new ChromeDriver(options);
                 }
                 if (ConfigProvider.getProperty("browser").equals("edge")) {
                     driver = new EdgeDriver();
