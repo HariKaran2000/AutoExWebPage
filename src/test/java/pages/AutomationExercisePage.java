@@ -1,6 +1,8 @@
 package pages;
 
 import ConfigProvider.ConfigProvider;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,6 +32,12 @@ public class AutomationExercisePage extends BasePage {
     WebElement signUpPassword;
     @FindBy(xpath = "//button[@data-qa='signup-button']")
     WebElement signUpButton;
+    @FindBy(xpath = "//input[@data-qa='login-email']")
+    WebElement loginEmail;
+    @FindBy(xpath = "//input[@data-qa='login-password']")
+    WebElement loginPassword;
+    @FindBy(xpath = "//button[@data-qa='login-button']")
+    WebElement loginButton;
     @FindBy(tagName = "B")
     List<WebElement> accountInfoHeader;
     @FindBy(id = "id_gender1")
@@ -70,6 +78,32 @@ public class AutomationExercisePage extends BasePage {
     WebElement loggedInUser;
     @FindBy(xpath = "//a[contains(text(),' Delete Account')]")
     WebElement deleteAccount;
+    @FindBy(xpath = "//p[contains(text(),'Your email')]")
+    WebElement errortext;
+    @FindBy(xpath = "//p[contains(text(),'Email Address already exist!')]")
+    WebElement emailExists;
+    @FindBy(xpath = "//a[contains(text(),' Logout')]")
+    WebElement logout;
+    @FindBy(xpath = "//a[contains(text(),' Contact us')]")
+    WebElement contactUs;
+    @FindBy(xpath = "//h2[contains(text(),'Get In Touch')]")
+    WebElement getInTouch;
+    @FindBy(xpath = "//a[contains(text(),'Test Cases')]")
+    WebElement testCases;
+    @FindBy(name = "name")
+    WebElement contactName;
+    @FindBy(name = "email")
+    WebElement contactEmail;
+    @FindBy(name = "subject")
+    WebElement contactSubject;
+    @FindBy(name = "message")
+    WebElement contactMessage;
+    @FindBy(name = "upload_file")
+    WebElement contactUploadFile;
+    @FindBy(name = "submit")
+    WebElement contactSubmit;
+    @FindBy(xpath = "//div[@class='status alert alert-success']")
+    WebElement contactUpdateSuccess;
 
     public void VerifyHomePageTittle() {
         Logger.getLogger("Login page").info("Launched Automation Exercise page");
@@ -103,6 +137,24 @@ public class AutomationExercisePage extends BasePage {
                     Assert.assertEquals(loggedInUser.getText(), ConfigProvider.getProperty("name"), "Logged in user is different");
                     Logger.getLogger("Home Page").info("Logged in user validated");
                     break;
+                case "Login to your account":
+                    Assert.assertEquals(signUpText.get(0).getText(), value, "Login page is not displayed");
+                    Logger.getLogger("Login Up Page").info("Login Header Validated");
+                    break;
+                case "Your email or password is incorrect!":
+                    Assert.assertEquals(errortext.getText(), value, "Error text does not match");
+                    ScreenshotUtils.addStepInReport(errortext.getText());
+                    Logger.getLogger("Login Up Page").info("Login error Validated");
+                    break;
+                case "Email Address already exist!":
+                    Assert.assertEquals(emailExists.getText(), value, "Email exists is not displayed");
+                    ScreenshotUtils.addStepInReport(emailExists.getText());
+                    Logger.getLogger("Login Up Page").info("Login error Validated");
+                    break;
+                case "GET IN TOUCH":
+                    Assert.assertEquals(getInTouch.getText(), value, "Header does not match");
+                    Logger.getLogger("Contact Us page").info("Header message validated");
+                    break;
                 default:
                     throw new RuntimeException("Not a valid header");
             }
@@ -116,6 +168,18 @@ public class AutomationExercisePage extends BasePage {
         setInput(signUpName, ConfigProvider.getProperty("name"));
         setInput(signUpEmail, ConfigProvider.getProperty("email"));
 
+    }
+
+    public void inputNameAndEmailforLogin() {
+        implictWait(5);
+        setInput(loginEmail, ConfigProvider.getProperty("email"));
+        setInput(loginPassword, ConfigProvider.getProperty("password"));
+    }
+
+    public void inCorrectNameAndEmail() {
+        implictWait(5);
+        setInput(loginEmail, ConfigProvider.getProperty("incorrectEmail"));
+        setInput(loginPassword, ConfigProvider.getProperty("incorrectPassword"));
     }
 
     public void buttonClick(String value) {
@@ -133,15 +197,44 @@ public class AutomationExercisePage extends BasePage {
                     clickElement(deleteAccount, "Delete account");
                     Logger.getLogger("Home Page").info("Clicked on Continue");
                     break;
+                case "Login":
+                    clickElement(loginButton, "Login button clicked");
+                    Logger.getLogger("Login page").info("Login button clicked");
+                    break;
+                case "Logout":
+                    clickElement(logout, "Logout button ");
+                    Logger.getLogger("Logout page").info("Logout  button clicked");
+                    break;
+                case "Contact Us":
+                    clickElement(contactUs, "Contact us");
+                    Logger.getLogger("Contact us").info("contact us button clicked");
+                    break;
+                case "Submit":
+                    try {
+                        scrollDown();
+                        clickElementWithoutScreenshot(contactSubmit);
+                        Logger.getLogger("Contact us").info("Submit button clicked");
+                        switchToAlertAccept(); // Will now wait and check for alert
+                        Logger.getLogger("Contact us").info("Pop Up ok clicked");
+                    } catch (UnhandledAlertException e) {
+                        e.printStackTrace();
+                        Logger.getLogger("Contact us").warning("Error while handling alert: " + e.getMessage());
+                    }
+                    break;
+                case "Test Cases":
+                    clickElement(testCases, "Testcase");
+                    Logger.getLogger("Testcase").info("Test case button clicked");
+                    break;
                 default:
                     Assert.assertTrue(false, "No value to check");
+                    break;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void enterAccountInfo() {
+    public void enterAccountInformation() {
         try {
             if (ConfigProvider.getProperty("gender").equals("male")) {
                 clickElement(maleGender, "MR");
@@ -178,5 +271,31 @@ public class AutomationExercisePage extends BasePage {
     public void createAccount() {
         clickElement(createAccount, "Create Account");
     }
+
+    public void validateLoginPage() {
+        if (driver.getCurrentUrl().contains("login")) {
+            System.out.println("User navigated to login page");
+            ScreenshotUtils.attachScreenshot(driver, "User navigated back to login page");
+        } else {
+            Assert.assertTrue(false, "User not naviagted");
+        }
+    }
+
+    public void validateContactUsPage() {
+        try {
+            setInput(contactName, ConfigProvider.getProperty("name"));
+            setInput(contactEmail, ConfigProvider.getProperty("email"));
+            setInput(contactSubject, "Contact us Form Automation");
+            setInput(contactMessage, "Automation message");
+            uplaodFile(contactUploadFile, "C:\\Users\\prade\\Test.txt");
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+    public void testCasePageValidation(){
+        String title = driver.getTitle();
+        Assert.assertEquals(title,"Automation Practice Website for UI Testing - Test Cases","Title does not match");
+    }
+
 
 }
