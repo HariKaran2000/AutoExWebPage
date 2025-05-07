@@ -22,8 +22,9 @@ public class AbstractSteps {
                     options.addArguments("--user-data-dir=" + tempProfileDir);
                     options.addArguments("--no-sandbox");
                     options.addArguments("--disable-dev-shm-usage");
-                    options.addArguments("--headless=new");
+//                    options.addArguments("--headless=new");
                     driver = new ChromeDriver(options);
+                    driver.manage().window().maximize();
 
                 }
                 if (ConfigProvider.getProperty("browser").equals("edge")) {

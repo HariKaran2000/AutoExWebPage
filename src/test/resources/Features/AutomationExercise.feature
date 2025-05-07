@@ -1,7 +1,6 @@
+@Automation_exercise
 Feature: Automation Exercise Page
 
-#  Background:
-#    Given a workbook named "NAME" and sheet name "il" is read
   @TC01_AE
   Scenario: Register Valid User
     Given I launch the browser
@@ -17,6 +16,73 @@ Feature: Automation Exercise Page
     And Verify 'ACCOUNT CREATED!' is visible
     And Click 'Continue' button
     And Verify 'Logged in as username' is visible
+#    When Click 'Delete Account' button
+#    Then Verify 'ACCOUNT DELETED!' is visible
+#    And Click 'Continue' button
+
+  @TC02_AE
+  Scenario: Validate Login User
+    Given I launch the browser
+    Then I navigate to automation exercise URl
+    Then Verify that home page is displayed
+    When Click on SignUp or Login button
+    And Verify 'Login to your account' is visible
+    And Enter name and email address for login user
+    And Click 'Login' button
+    And Verify 'Logged in as username' is visible
     When Click 'Delete Account' button
     Then Verify 'ACCOUNT DELETED!' is visible
     And Click 'Continue' button
+
+  @TC03_AE
+  Scenario: Validate Invalid user Login
+    Given I launch the browser
+    Then I navigate to automation exercise URl
+    Then Verify that home page is displayed
+    When Click on SignUp or Login button
+    And Verify 'Login to your account' is visible
+    And Enter In Correct name and email address for login user
+    And Click 'Login' button
+    And Verify 'Your email or password is incorrect!' is visible
+
+  @TC04_AE
+  Scenario: Validate Logout User
+    Given I launch the browser
+    Then I navigate to automation exercise URl
+    Then Verify that home page is displayed
+    When Click on SignUp or Login button
+    And Verify 'Login to your account' is visible
+    And Enter name and email address for login user
+    And Click 'Login' button
+    And Verify 'Logged in as username' is visible
+    And Click 'Logout' button
+    Then Verify that user is navigated to login page
+
+  @TC05_AE
+  Scenario: Register User with existing email
+    Given I launch the browser
+    Then I navigate to automation exercise URl
+    Then Verify that home page is displayed
+    When Click on SignUp or Login button
+    And Verify 'New User Signup!' is visible
+    And Enter name and email address
+    When Click 'Signup' button
+    Then Verify 'Email Address already exist!' is visible
+
+  @TC06_AE
+  Scenario: Contact Us Form
+    Given I launch the browser
+    Then I navigate to automation exercise URl
+    Then Verify that home page is displayed
+    And Click 'Contact Us' button
+    And Verify 'GET IN TOUCH' is visible
+    And Enter name, email, subject and message and upload
+    And Click 'Submit' button
+
+  @TC07_AE
+  Scenario: Contact Us Form
+    Given I launch the browser
+    Then I navigate to automation exercise URl
+    Then Verify that home page is displayed
+    And Click 'Test Cases' button
+   Then Verify user is navigated to test cases page successfully

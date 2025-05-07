@@ -51,18 +51,36 @@ public class AutomationExerciseStepDefinition extends AbstractSteps {
 
     @Then("Fill details: for account registration with valid information")
     public void fill_details_title_name_email_password_date_of_birth() {
-        getPageObjectManager().getAutomationExercisePage().enterAccountInfo();
+        getPageObjectManager().getAutomationExercisePage().enterAccountInformation();
     }
 
     @And("Click Create Account button")
     public void clickCreateAccountButton() {
         getPageObjectManager().getAutomationExercisePage().createAccount();
-        
+    }
+    @And("Enter name and email address for login user")
+    public void enterNameAndEmailAddressForLoginUser() {
+        getPageObjectManager().getAutomationExercisePage().inputNameAndEmailforLogin();
     }
 
-    @Then("Verify that {string} is visible and click {string} button")
-    public void verifyThatACCOUNTDELETEDIsVisibleAndClickContinueButton() {
+    @And("Enter In Correct name and email address for login user")
+    public void enterInCorrectNameAndEmailAddressForLoginUser() {
+        getPageObjectManager().getAutomationExercisePage().inCorrectNameAndEmail();
     }
 
 
+    @Then("Verify that user is navigated to login page")
+    public void verifyThatUserIsNavigatedToLoginPage() {
+        getPageObjectManager().getAutomationExercisePage().validateLoginPage();
+    }
+
+    @And("Enter name, email, subject and message and upload")
+    public void enterNameEmailSubjectAndMessage() {
+        getPageObjectManager().getAutomationExercisePage().validateContactUsPage();
+    }
+
+    @Then("Verify user is navigated to test cases page successfully")
+    public void verifyUserIsNavigatedToTestCasesPageSuccessfully() {
+        getPageObjectManager().getAutomationExercisePage().testCasePageValidation();
+    }
 }
