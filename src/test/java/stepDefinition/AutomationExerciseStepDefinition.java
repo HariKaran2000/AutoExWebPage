@@ -4,17 +4,11 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.hu.De;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
 public class AutomationExerciseStepDefinition extends AbstractSteps {
     public AutomationExerciseStepDefinition() {
         super();
     }
-
-
 
     @Given("I launch the browser")
     public void lauchBrowser() {
@@ -82,5 +76,23 @@ public class AutomationExerciseStepDefinition extends AbstractSteps {
     @Then("Verify user is navigated to test cases page successfully")
     public void verifyUserIsNavigatedToTestCasesPageSuccessfully() {
         getPageObjectManager().getAutomationExercisePage().testCasePageValidation();
+    }
+
+    @And("Verify user is navigated to ALL PRODUCTS page successfully")
+    public void verifyUserIsNavigatedToALLPRODUCTSPageSuccessfully() {
+        getPageObjectManager().getAutomationExercisePage().productPageValidation();
+    }
+
+    @Then("Verify that detail detail is visible: product name, category, price, availability, condition, brand")
+    public void verifyThatDetailDetailIsVisibleProductNameCategoryPriceAvailabilityConditionBrand() {
+    }
+
+    @And("Enter product name in search input and click search button")
+    public void enterProductNameInSearchInputAndClickSearchButton() {
+        
+    }
+
+    @Then("Verify all the products related to search are visible")
+    public void verifyAllTheProductsRelatedToSearchAreVisible() {
     }
 }

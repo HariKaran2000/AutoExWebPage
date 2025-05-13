@@ -16,7 +16,7 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
                 "json:AutomationReport/cucumberJson.json",
                 "junit:AutomationReport/cucumberXml.xml"
         },
-        tags = "@TC07_AE"
+        tags = "@TC08_AE"
 )
 
 public class TestRunner extends AbstractTestNGCucumberTests {

@@ -1,7 +1,6 @@
 package pages;
 
 import ConfigProvider.ConfigProvider;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -90,6 +89,10 @@ public class AutomationExercisePage extends BasePage {
     WebElement getInTouch;
     @FindBy(xpath = "//a[contains(text(),'Test Cases')]")
     WebElement testCases;
+    @FindBy(xpath = "//a[contains(text(),'Products')]")
+    WebElement products;
+    @FindBy(xpath = "//a[contains(text(),'View Product')]")
+    List<WebElement> viewProduct;
     @FindBy(name = "name")
     WebElement contactName;
     @FindBy(name = "email")
@@ -104,6 +107,8 @@ public class AutomationExercisePage extends BasePage {
     WebElement contactSubmit;
     @FindBy(xpath = "//div[@class='status alert alert-success']")
     WebElement contactUpdateSuccess;
+    @FindBy(xpath = "//div[@id='accordian']/div/div/h4/a")
+    List<WebElement> productCategory;
 
     public void VerifyHomePageTittle() {
         Logger.getLogger("Login page").info("Launched Automation Exercise page");
@@ -164,20 +169,20 @@ public class AutomationExercisePage extends BasePage {
     }
 
     public void inputNameAndEmail() {
-        implictWait(5);
+        implicitWait(5);
         setInput(signUpName, ConfigProvider.getProperty("name"));
         setInput(signUpEmail, ConfigProvider.getProperty("email"));
 
     }
 
     public void inputNameAndEmailforLogin() {
-        implictWait(5);
+        implicitWait(5);
         setInput(loginEmail, ConfigProvider.getProperty("email"));
         setInput(loginPassword, ConfigProvider.getProperty("password"));
     }
 
     public void inCorrectNameAndEmail() {
-        implictWait(5);
+        implicitWait(5);
         setInput(loginEmail, ConfigProvider.getProperty("incorrectEmail"));
         setInput(loginPassword, ConfigProvider.getProperty("incorrectPassword"));
     }
@@ -224,6 +229,15 @@ public class AutomationExercisePage extends BasePage {
                 case "Test Cases":
                     clickElement(testCases, "Testcase");
                     Logger.getLogger("Testcase").info("Test case button clicked");
+                    break;
+                case "Products":
+                    clickElement(products, "Products");
+                    Logger.getLogger("Products").info("Products button clicked");
+                    break;
+                case "View Product":
+                    scrollDown();
+                    clickElement(viewProduct.get(0), "View Products");
+                    Logger.getLogger("View Products").info("View Products button clicked");
                     break;
                 default:
                     Assert.assertTrue(false, "No value to check");
@@ -287,7 +301,7 @@ public class AutomationExercisePage extends BasePage {
             setInput(contactEmail, ConfigProvider.getProperty("email"));
             setInput(contactSubject, "Contact us Form Automation");
             setInput(contactMessage, "Automation message");
-            uplaodFile(contactUploadFile, "C:\\Users\\prade\\Test.txt");
+            uploadFile(contactUploadFile, "C:\\Users\\prade\\Test.txt");
         } catch (Exception e) {
             e.getMessage();
         }
@@ -295,6 +309,14 @@ public class AutomationExercisePage extends BasePage {
     public void testCasePageValidation(){
         String title = driver.getTitle();
         Assert.assertEquals(title,"Automation Practice Website for UI Testing - Test Cases","Title does not match");
+    }
+    public void productPageValidation(){
+        String title = driver.getTitle();
+        Assert.assertEquals(title,"Automation Exercise - All Products","Title does not match");
+        scrollDown();
+        for(int i=0; i<productCategory.size(); i++){
+            clickElement(productCategory.get(i), productCategory.get(i).getText());
+        }
     }
 
 

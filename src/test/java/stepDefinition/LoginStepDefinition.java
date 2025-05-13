@@ -11,10 +11,8 @@ import ConfigProvider.ConfigProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import utils.BasePage;
@@ -59,7 +57,7 @@ public class LoginStepDefinition extends BasePage {
 
         driver.findElement(By.xpath("//a[contains(text(),'Sign in')]")).click();
         ScreenshotUtils.attachScreenshot(driver, "Navigated to Sign In Page");
-        implictWait(20);
+        implicitWait(20);
         String pageSource = driver.getPageSource();
         if (pageSource.contains("Sign in to your account")) {
             driver.findElement(By.id("userid")).sendKeys(ConfigProvider.getProperty("email"));
@@ -75,7 +73,7 @@ public class LoginStepDefinition extends BasePage {
             driver.findElement(By.id("userid")).sendKeys(ConfigProvider.getProperty("email"));
             ScreenshotUtils.attachScreenshot(driver, "Email ID Entered");
             Logger.getLogger("Ebay SignIn :").info("Email ID Entered");
-            implictWait(20);
+            implicitWait(20);
             driver.findElement(By.id("signin-continue-btn")).click();
         }
         driver.findElement(By.id("pass")).sendKeys(ConfigProvider.getProperty("password"));
