@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import pageObjectManager.PageObjectManager;
 
 import java.nio.file.Files;
@@ -17,6 +18,9 @@ public class AbstractSteps {
         try {
             if (driver == null) {
                 if (ConfigProvider.getProperty("browser").equals("chrome")) {
+                    System.out.println(System.getProperty("user.dir")+ "\\chromedriver-win64\\chromedriver.exe");
+                    WebDriverManager.chromedriver().setup();
+//                    System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+ "\\chromedriver-win64\\chromedriver.exe");
                     ChromeOptions options = new ChromeOptions();
                     options.addArguments("--headless=new"); // Use new headless mode
                     options.addArguments("--no-sandbox");
