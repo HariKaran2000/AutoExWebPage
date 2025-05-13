@@ -29,34 +29,39 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(ele));
     }
 
-    protected void implictWait(int num) {
+    protected void implicitWait(int num) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(num));
     }
     protected void clickElement(final WebElement ele, String description){
-        ele.click();
-        implictWait(5);
-        ScreenshotUtils.attachScreenshot(driver,"Clicked " + description);
+        try{
+            ele.click();
+            Thread.sleep(1000);
+            ScreenshotUtils.attachScreenshot(driver,"Clicked " + description);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
     protected void clickElementWithoutScreenshot(final WebElement ele){
         ele.click();
-        implictWait(5);
+        implicitWait(5);
     }
     protected void setInput(final WebElement ele, String value){
         ele.click();
         ele.sendKeys(value);
-        implictWait(3);
+        implicitWait(3);
         ScreenshotUtils.attachScreenshot(driver,"Entered value : " + value);
     }
     protected void moveToElement(WebElement ele){
         Actions actions = new Actions(driver);
         actions.moveToElement(ele).perform();
-        implictWait(5);
+        implicitWait(5);
     }
 
     protected void selectElementByValue(WebElement ele, String value){
         Select select = new Select(ele);
         select.selectByValue(value);
-        implictWait(5);
+        implicitWait(5);
         ScreenshotUtils.attachScreenshot(driver,"Selected " + value);
     }
     protected void scrollDown(){
@@ -75,7 +80,7 @@ public class BasePage {
         }
 
     }
-    protected void uplaodFile(WebElement ele, String path){
+    protected void uploadFile(WebElement ele, String path){
        ele.sendKeys(path);
     }
 

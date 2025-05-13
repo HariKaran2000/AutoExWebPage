@@ -80,9 +80,30 @@ Feature: Automation Exercise Page
     And Click 'Submit' button
 
   @TC07_AE
-  Scenario: Contact Us Form
+  Scenario: TestCase Page
     Given I launch the browser
     Then I navigate to automation exercise URl
     Then Verify that home page is displayed
     And Click 'Test Cases' button
-   Then Verify user is navigated to test cases page successfully
+    Then Verify user is navigated to test cases page successfully
+
+  @TC08_AE
+  Scenario: Verify All Products and product detail page
+    Given I launch the browser
+    Then I navigate to automation exercise URl
+    Then Verify that home page is displayed
+    And Click 'Products' button
+    And Verify user is navigated to ALL PRODUCTS page successfully
+    And Click 'View Product' button
+    Then Verify that detail detail is visible: product name, category, price, availability, condition, brand
+
+  @TC09_AE
+  Scenario: Verify All Products and product detail page
+    Given I launch the browser
+    Then I navigate to automation exercise URl
+    Then Verify that home page is displayed
+    And Click 'Products' button
+    And Verify user is navigated to ALL PRODUCTS page successfully
+    And Enter product name in search input and click search button
+    And Verify 'SEARCHED PRODUCTS' is visible
+    Then Verify all the products related to search are visible

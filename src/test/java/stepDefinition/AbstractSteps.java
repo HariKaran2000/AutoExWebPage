@@ -18,11 +18,6 @@ public class AbstractSteps {
             if (driver == null) {
                 if (ConfigProvider.getProperty("browser").equals("chrome")) {
                     ChromeOptions options = new ChromeOptions();
-                    String tempProfileDir = Files.createTempDirectory("chrome-profile").toString();
-                    options.addArguments("--user-data-dir=" + tempProfileDir);
-                    options.addArguments("--no-sandbox");
-                    options.addArguments("--disable-dev-shm-usage");
-//                    options.addArguments("--headless=new");
                     driver = new ChromeDriver(options);
                     driver.manage().window().maximize();
 

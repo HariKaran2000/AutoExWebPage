@@ -2,7 +2,6 @@ package stepDefinition;
 
 import ConfigProvider.ConfigProvider;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 //import jdk.jpackage.internal.Log;
@@ -11,7 +10,6 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import utils.BasePage;
-import utils.DriverManager;
 import utils.ScreenshotUtils;
 
 import java.util.List;
@@ -36,22 +34,22 @@ public class ExploreStepDefinition extends BasePage {
     public void i_choose_the_fashion_category() {
         driver.findElement(By.xpath("//span[@role='text' and contains(text(),'Shoes')]")).click();
         Logger.getLogger("Explore Page").info("Clicked on Shoes");
-        implictWait(10);
+        implicitWait(10);
         ScreenshotUtils.attachScreenshot(driver, "Clicked on Shoes");
         driver.findElement(By.xpath("//li[2]/button[@class='segmented-buttons__button']")).click();
         Logger.getLogger("Explore Page").info("Clicked on Men");
-        implictWait(10);
+        implicitWait(10);
         ScreenshotUtils.attachScreenshot(driver, "Selected Men");
         List<WebElement> ListSize = driver.findElements(By.className("ap-toggle-button"));
         System.out.println(ListSize.size());
-        implictWait(10);
+        implicitWait(10);
         ListSize.get(6).click();
         ScreenshotUtils.attachScreenshot(driver, "Selected Size" + ListSize.get(6).getText());
         Logger.getLogger("Explore Page").info("Selected Size" + ListSize.get(6).getText());
-        implictWait(10);
+        implicitWait(10);
         driver.findElement(By.xpath("//button[@class='button-cta-button btn btn--primary']")).click();
         Logger.getLogger("Explore Page").info("Clicked on Save button");
-        implictWait(10);
+        implicitWait(10);
     }
 
     @Then("I Validate the selected explore Page")
@@ -78,7 +76,7 @@ public class ExploreStepDefinition extends BasePage {
         if (arg.equalsIgnoreCase("Shoes")) {
             driver.findElement(By.xpath("//span[@role='text' and contains(text(),'Shoes')]")).click();
             Logger.getLogger("Explore Page").info("Clicked on Shoes");
-            implictWait(10);
+            implicitWait(10);
             ScreenshotUtils.attachScreenshot(driver, "Clicked on Shoes");
         }
         if (arg.equalsIgnoreCase("Tops & T-Shirts")) {
@@ -86,7 +84,7 @@ public class ExploreStepDefinition extends BasePage {
             waitUntilClickable(ele);
             driver.findElement(By.xpath("//span[@role='text' and contains(text(),'Tops & T-Shirts')]")).click();
             Logger.getLogger("Explore Page").info("Clicked on Tops & T-Shirts");
-            implictWait(10);
+            implicitWait(10);
             ScreenshotUtils.attachScreenshot(driver, "Clicked on Tops & T-Shirts");
         }
         if (arg.equalsIgnoreCase("Coats & Jackets")) {
@@ -94,7 +92,7 @@ public class ExploreStepDefinition extends BasePage {
             waitUntilClickable(ele);
             driver.findElement(By.xpath("//span[@role='text' and contains(text(),'Coats & Jackets')]")).click();
             Logger.getLogger("Explore Page").info("Clicked on Coats & Jackets");
-            implictWait(10);
+            implicitWait(10);
             ScreenshotUtils.attachScreenshot(driver, "Clicked on Coats & Jackets");
         }
 
@@ -104,15 +102,15 @@ public class ExploreStepDefinition extends BasePage {
     public void iSelectTheSizeAndGender() {
         driver.findElement(By.xpath("//li[2]/button[@class='segmented-buttons__button']")).click();
         Logger.getLogger("Explore Page").info("Clicked on Men");
-        implictWait(10);
+        implicitWait(10);
         ScreenshotUtils.attachScreenshot(driver, "Selected Men");
         List<WebElement> ListSize = driver.findElements(By.className("ap-toggle-button"));
         Logger.getLogger("Explore Page").info("Size = " + ListSize.size());
-        implictWait(10);
+        implicitWait(10);
         ListSize.get(6).click();
         ScreenshotUtils.attachScreenshot(driver, "Selected Size " + ListSize.get(6).getText());
         Logger.getLogger("Explore Page").info("Selected Size " + ListSize.get(6).getText());
-        implictWait(10);
+        implicitWait(10);
 
 
     }
@@ -127,7 +125,7 @@ public class ExploreStepDefinition extends BasePage {
     @Then("I enter username and password for login page")
     public void iEnterUsernameAndPasswordForLoginPage() throws InterruptedException {
         ScreenshotUtils.attachScreenshot(driver, "Navigated to Sign In Page");
-        implictWait(20);
+        implicitWait(20);
         String pageSource = driver.getPageSource();
         if (pageSource.contains("Sign in to your account")) {
             driver.findElement(By.id("userid")).sendKeys(ConfigProvider.getProperty("email"));
