@@ -1,6 +1,7 @@
 package stepDefinition;
 
 import io.cucumber.java.*;
+import org.testng.annotations.BeforeSuite;
 import utils.ExtentReportUtil;
 import utils.ScreenshotUtils;
 
@@ -20,9 +21,6 @@ public class Hooks extends AbstractSteps{
             ScreenshotUtils.attachScreenshot(getDriver(), "Failure Screenshot");
             ScreenshotUtils.addStepInReportFail("Scenario Failed: " + scenario.getName());
         }
-//        if (driver != null) {
-//            driver.quit();
-//        }
         ExtentReportUtil.tearDownReport();
     }
 }
