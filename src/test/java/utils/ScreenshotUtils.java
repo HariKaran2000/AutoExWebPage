@@ -20,7 +20,6 @@ import org.testng.annotations.BeforeMethod;
 
 public class ScreenshotUtils extends ExtentReportUtil {
 
-    public static String screenshotFolder = "AutomationReport\\screenshots\\";
     public static final Logger logger = Logger.getLogger(String.valueOf(ScreenshotUtils.class));
     private static ExtentTest extentTest;
 
@@ -31,8 +30,9 @@ public class ScreenshotUtils extends ExtentReportUtil {
             String random = RandomStringUtils.randomNumeric(3);
             TakesScreenshot ts = (TakesScreenshot) driver;
             File src = ts.getScreenshotAs(OutputType.FILE);
-            String screenshotPath = LocalDir + "\\AutomationReport\\screenshots\\" + "Screenshot-" +random + ".png";
+            String screenshotPath = LocalDir + "/AutomationReport/screenshots/Screenshot-" + random + ".png";
             File dest = new File(screenshotPath);
+            dest.getParentFile().mkdirs(); // Ensure directory exists
             try {
                 FileUtils.copyFile(src, dest);
                 scenarioTest.pass(stepName, MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());

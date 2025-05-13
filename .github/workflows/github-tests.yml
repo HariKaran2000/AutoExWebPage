@@ -39,7 +39,9 @@ jobs:
         run: mvn clean test
 
       - name: List files in AutomationReport
-        run: ls -R AutomationReport || echo "Directory not found"
+        run: |
+          echo "Listing contents of AutomationReport directory:"
+          ls -R AutomationReport || echo "Directory not found"
 
       - name: Upload Test Reports
         if: always()
@@ -47,5 +49,7 @@ jobs:
         with:
           name: ExtentReport
           path: |
-            AutomationReport/ExtentReport_*.html
+            AutomationReport/*.html
+            AutomationReport/*.xml
+            AutomationReport/*.json
             AutomationReport/screenshots/
