@@ -20,13 +20,13 @@ public class ExtentReportUtil {
     static String LocalDir = System.getProperty("user.dir");
     private static String Timestamp = new SimpleDateFormat("dd.MM.yyyy.HH.mm").format(new Date());
     private static String FileName = "ExtentReport_" + Timestamp + ".html";
-    private static String Folder = LocalDir +"\\AutomationReport\\";
+    private static String Folder = LocalDir +"/AutomationReport/";
 
     public static ExtentReports setupReport() {
 
         if (extent == null) {
-            ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(LocalDir + "\\AutomationReport\\" + FileName);
-            System.out.println(LocalDir +"\\AutomationReport\\"+ FileName);
+            ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(LocalDir + "/AutomationReport/" + FileName);
+            System.out.println(LocalDir +"/AutomationReport/"+ FileName);
 
             htmlReporter.config().setTheme(Theme.STANDARD);
             htmlReporter.config().setDocumentTitle("ExtentReport");
@@ -59,7 +59,6 @@ public class ExtentReportUtil {
     }
 
     public static void tearDownReport() {
-
         extent.flush();
     }
 }

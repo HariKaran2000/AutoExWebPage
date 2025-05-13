@@ -11,10 +11,9 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
         plugin = {
                 "pretty",
                 "summary",
-                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
-                "html:AutomationReport/cucumberHTML.html",
-                "json:AutomationReport/cucumberJson.json",
-                "junit:AutomationReport/cucumberXml.xml"
+                "html:AutomationReport/ExtentReport.html",
+                "json:AutomationReport/cucumber.json",
+                "junit:AutomationReport/cucumber.xml"
         },
         tags = "@TC08_AE"
 )

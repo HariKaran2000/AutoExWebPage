@@ -29,14 +29,17 @@ public class AutomationExerciseStepDefinition extends AbstractSteps {
     public void clickOnSignUpOrLoginButton() {
         getPageObjectManager().getAutomationExercisePage().clickOnLogin();
     }
+
     @Then("Verify {string} is visible")
     public void verify_is_visible(String string) {
-       getPageObjectManager().getAutomationExercisePage().verifyHeader(string);
+        getPageObjectManager().getAutomationExercisePage().verifyHeader(string);
     }
+
     @Then("Enter name and email address")
     public void enter_name_and_email_address() {
         getPageObjectManager().getAutomationExercisePage().inputNameAndEmail();
     }
+
     @Then("Click {string} button")
     public void click_button(String string) {
         getPageObjectManager().getAutomationExercisePage().buttonClick(string);
@@ -52,6 +55,7 @@ public class AutomationExerciseStepDefinition extends AbstractSteps {
     public void clickCreateAccountButton() {
         getPageObjectManager().getAutomationExercisePage().createAccount();
     }
+
     @And("Enter name and email address for login user")
     public void enterNameAndEmailAddressForLoginUser() {
         getPageObjectManager().getAutomationExercisePage().inputNameAndEmailforLogin();
@@ -89,7 +93,7 @@ public class AutomationExerciseStepDefinition extends AbstractSteps {
 
     @And("Enter product name in search input and click search button")
     public void enterProductNameInSearchInputAndClickSearchButton() {
-        
+
     }
 
     @Then("Verify all the products related to search are visible")

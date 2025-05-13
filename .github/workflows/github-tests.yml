@@ -50,6 +50,4 @@ jobs:
           name: ExtentReport
           path: |
             AutomationReport/*.html
-            AutomationReport/*.xml
-            AutomationReport/*.json
             AutomationReport/screenshots/

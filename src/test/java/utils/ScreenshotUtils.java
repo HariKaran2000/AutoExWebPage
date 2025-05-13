@@ -20,8 +20,6 @@ import org.testng.annotations.BeforeMethod;
 
 public class ScreenshotUtils extends ExtentReportUtil {
 
-    public static final Logger logger = Logger.getLogger(String.valueOf(ScreenshotUtils.class));
-    private static ExtentTest extentTest;
 
 
     public static void attachScreenshot(WebDriver driver, String stepName) {
