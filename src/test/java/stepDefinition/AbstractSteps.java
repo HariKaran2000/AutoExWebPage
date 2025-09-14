@@ -20,7 +20,7 @@ public class AbstractSteps {
                 if (ConfigProvider.getProperty("browser").equals("chrome")) {
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions options = new ChromeOptions();
-                    options.addArguments("--headless=new");
+//                    options.addArguments("--headless=new");
                     options.addArguments("--no-sandbox");
                     options.addArguments("--disable-dev-shm-usage");
                     options.addArguments("--disable-gpu");

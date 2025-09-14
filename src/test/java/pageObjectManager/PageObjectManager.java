@@ -7,6 +7,7 @@ public class PageObjectManager {
     private  WebDriver driver;
     private AutomationExercisePage automationExercisePage;
     public PageObjectManager(WebDriver driver){
+
         this.driver = driver;
     }
     public AutomationExercisePage getAutomationExercisePage(){
