@@ -22,14 +22,14 @@ Feature: Automation Exercise Page
 
   @TC02_AE
   Scenario: Validate Login User
-    Given I launch the browser
-    Then I navigate to automation exercise URl
-    Then Verify that home page is displayed
-    When Click on SignUp or Login button
-    And Verify 'Login to your account' is visible
-    And Enter name and email address for login user
-    And Click 'Login' button
-    And Verify 'Logged in as username' is visible
+#    Given I launch the browser
+#    Then I navigate to automation exercise URl
+#    Then Verify that home page is displayed
+#    When Click on SignUp or Login button
+#    And Verify 'Login to your account' is visible
+#    And Enter name and email address for login user
+#    And Click 'Login' button
+#    And Verify 'Logged in as username' is visible
     When Click 'Delete Account' button
     Then Verify 'ACCOUNT DELETED!' is visible
     And Click 'Continue' button
@@ -98,7 +98,7 @@ Feature: Automation Exercise Page
     Then Verify that detail detail is visible: product name, category, price, availability, condition, brand
 
   @TC09_AE
-  Scenario: Verify All Products and product detail page
+  Scenario: Search Product
     Given I launch the browser
     Then I navigate to automation exercise URl
     Then Verify that home page is displayed

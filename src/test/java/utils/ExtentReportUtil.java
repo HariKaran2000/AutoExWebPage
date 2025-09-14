@@ -45,6 +45,7 @@ public class ExtentReportUtil {
     }
 
     public static void startTest(String str) {
+
         scenarioTest = extent.createTest(str);
     }
 

@@ -13,9 +13,6 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Logger;
-import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 
 
 public class ScreenshotUtils extends ExtentReportUtil {

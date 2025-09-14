@@ -89,6 +89,7 @@ public class AutomationExerciseStepDefinition extends AbstractSteps {
 
     @Then("Verify that detail detail is visible: product name, category, price, availability, condition, brand")
     public void verifyThatDetailDetailIsVisibleProductNameCategoryPriceAvailabilityConditionBrand() {
+        getPageObjectManager().getAutomationExercisePage().verifyDisplayedProduct();
     }
 
     @And("Enter product name in search input and click search button")

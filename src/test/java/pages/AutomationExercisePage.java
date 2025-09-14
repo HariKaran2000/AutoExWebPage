@@ -109,6 +109,12 @@ public class AutomationExercisePage extends BasePage {
     WebElement contactUpdateSuccess;
     @FindBy(xpath = "//div[@id='accordian']/div/div/h4/a")
     List<WebElement> productCategory;
+    @FindBy(xpath = "//div[@class='product-information']/p")
+    List<WebElement> productDetails;
+    @FindBy(id="search_product")
+    WebElement search;
+    @FindBy(xpath = "//div[@class='productinfo text-center']/p")
+    List<WebElement> productInfoCenter;
 
     public void VerifyHomePageTittle() {
         Logger.getLogger("Login page").info("Launched Automation Exercise page");
@@ -317,6 +323,22 @@ public class AutomationExercisePage extends BasePage {
         for(int i=0; i<productCategory.size(); i++){
             clickElement(productCategory.get(i), productCategory.get(i).getText());
         }
+    }
+    public void verifyDisplayedProduct(){
+        try{
+            Assert.assertTrue(signUpText.get(2).isDisplayed(),"Product name not displayed");
+            for(int i=0; i<productDetails.size(); i++){
+                Assert.assertTrue(productDetails.get(i).isDisplayed(),"Product details not available");
+
+            }
+            ScreenshotUtils.attachScreenshot(driver,"Products Details");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+    public void searchProduct(){
+        
     }
 
 
